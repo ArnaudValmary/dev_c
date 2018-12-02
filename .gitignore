@@ -15,9 +15,10 @@ depsd
 *.so
 *.so.*
 
-# Executable files
+# Executable files and directories
 *.bin
 *.exe
+bin
 
 # Debug files
 *.dbg
