@@ -16,7 +16,7 @@ BASE_DIR = $(shell git rev-parse --show-toplevel)
 # Yes, before infos target
 default: all
 dbg:
-	$(MAKE) MK_DIR=$(MK_DIR) DEBUG_FLAG=$${DEBUG_FLAG} all
+	$(MAKE) MK_DIR=$(MK_DIR) DEBUG_FLAG=yes all
 
 # Commands
 GET_CURRENT_DIR = pwd -L
