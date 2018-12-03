@@ -1,6 +1,8 @@
 
 LIBNAME = proc
 
+#SONAME_FLAG=yes
+#SONAME = $(LIB_PREFIX)proc
 #SOVERSION = 1
 #LIBVERSION = 1.0
 

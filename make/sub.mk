@@ -62,4 +62,4 @@ all mrproper clean force:
 			RET_CODE=$$(( RET_CODE + RET_CODE_CMD )); \
 		fi; \
 	done; \
-	$(END_TARGET)
+	$(END_TARGET_SUB)

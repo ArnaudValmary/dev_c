@@ -1,43 +1,48 @@
 
 DYN_FLAG = yes
 OBJ_DIR  = ../obj/dynamic
-include $(MK_DIR)/c.mk
+LIB_EXT  = .so
+
+CFLAGS_LIB_COMMON =  -L$(LIB_DIR)
+ifeq ($(DEBUG_FLAG),yes)
+
+ifeq ($(LIBSD),)
+CFLAGS_LIB = $(CFLAGS_LIB_COMMON) $(patsubst -l%,-l%.dbg,$(LIBS))
+else
+CFLAGS_LIB = $(CFLAGS_LIB_COMMON) $(LIBSD)
+endif
+
+else
+CFLAGS_LIB = $(CFLAGS_LIB_COMMON) $(LIBS)
+endif
+
+include $(MK_DIR)/c_lib.mk
 
 .PHONY: c_lib_dynamic_infos
 
-CFLAGS_INC = -I../../include $(INCLUDES)
-
-ifeq ($(SOVERSION),)
-else
-	SOVERSION := .$(SOVERSION)
+ifeq ($(SONAME_FLAG),yes)
+	ifeq ($(SONAME),)
+		SONAME := $(LIB_PREFIX)$(LIBNAME)$(C_EXT_DBG)$(LIB_EXT)
+	else
+	endif
+	ifeq ($(SOVERSION),)
+		SOVERSION :=
+	else
+		SOVERSION := .$(SOVERSION)
+	endif
+	LDFLAGS := $(LDFLAGS) -Wl,-soname,$(SONAME)$(SOVERSION)
 endif
 
 ifeq ($(LIBVERSION),)
 else
-	LIBVERSION := .$(LIBVERSION)
-endif
-
-LIB_PREFIX = lib
-LIB_EXT    = .so
-
-TARGETN    = $(LIB_DIR)/$(LIB_PREFIX)$(LIBNAME)$(LIB_EXT)$(LIBVERSION)
-TARGETD    = $(LIB_DIR)/$(LIB_PREFIX)$(LIBNAME)$(C_EXT_DBG)$(LIB_EXT)$(LIBVERSION)
-TARGET_    = $(LIB_DIR)/$(LIB_PREFIX)$(LIBNAME)$(LIB_EXT)* $(LIB_DIR)/$(LIB_PREFIX)$(LIBNAME)$(C_EXT_DBG)$(LIB_EXT)*
-
-ifeq ($(DEBUG_FLAG),yes)
-	TARGET = $(TARGETD)
-else
-	TARGET = $(TARGETN)
+LIBVERSION := .$(LIBVERSION)
 endif
 
 # Infos
-c_lib_dynamic_infos: c_infos
+c_lib_dynamic_infos: c_lib_infos
 	@echo "C lib dynamic:"
 	@echo "- Macros:"
-	@echo " + LIB_PREFIX = '$(LIB_PREFIX)'"
 	@echo " + LIB_EXT .. = '$(LIB_EXT)'"
-	@echo " + SOURCES .. = '$(SOURCES)'"
-	@echo " + TARGET ... = '$(TARGET)'"
 	@echo
 
 # Targets
@@ -45,7 +50,5 @@ $(TARGET): $(C_OBJS)
 	$(ECHO_MAKE)
 	$(MAKE_DIR) $(LIB_DIR) \
 	&& $(REMOVE_FILE) $@ \
-	&& $(LD) $(LDFLAGS_DYN) -Wl,-soname,$(LIB_PREFIX)$(LIBNAME)$(C_EXT_DBG)$(LIB_EXT)$(SOVERSION) -o $@ $^ $(CFLAGS_LIB); \
+	&& $(LD) $(LDFLAGS) -o $@ $^ $(CFLAGS_LIB); \
 	$(END_TARGET)
-
-all: $(TARGET)

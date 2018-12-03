@@ -5,7 +5,19 @@ include $(MK_DIR)/c.mk
 .PHONY: c_bin_infos
 
 CFLAGS_INC = -I../../include $(INCLUDES)
-CFLAGS_LIB = -L../../lib $(LIBS)
+
+CFLAGS_LIB_COMMON =  -L$(LIB_DIR)
+ifeq ($(DEBUG_FLAG),yes)
+
+ifeq ($(LIBSD),)
+CFLAGS_LIB = $(CFLAGS_LIB_COMMON) $(patsubst -l%,-l%.dbg,$(LIBS))
+else
+CFLAGS_LIB = $(CFLAGS_LIB_COMMON) $(LIBSD)
+endif
+
+else
+CFLAGS_LIB = $(CFLAGS_LIB_COMMON) $(LIBS)
+endif
 
 BIN_PREFIX =
 BIN_EXT    =

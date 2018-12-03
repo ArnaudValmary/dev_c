@@ -57,27 +57,30 @@ endif
 CC = gcc
 
 # Compilation flags
-C_NORM  = c99
-CFLAGS  = $(BITS_FLAG) -W -Wall -std=$(C_NORM) -pedantic
+C_BITS_FLAG = -m$(BITS_FLAG)
+C_NORM      = c99
+CFLAGS      = $(C_BITS_FLAG) -W -Wall -std=$(C_NORM) -pedantic
 ifeq ($(DEBUG_FLAG),yes)
-CFLAGS := $(CFLAGS) -g
+CFLAGS     := $(CFLAGS) -g
 endif
 ifeq ($(DYN_FLAG),yes)
-DYN_FLAGS = -fPIC
-CFLAGS   := $(CFLAGS) $(DYN_FLAGS)
+DYN_FLAGS   = -fPIC
+CFLAGS     := $(CFLAGS) $(DYN_FLAGS)
 else
-DYN_FLAGS =
+DYN_FLAGS   =
 endif
 
 # Link commands
 LD = $(CC)
 
 # Link flags
-LDFLAGS =
+LDFLAGS     = $(C_BITS_FLAG)
 ifeq ($(DEBUG_FLAG),yes)
-LDFLAGS := $(LDFLAGS) -g
+LDFLAGS    := $(LDFLAGS) -g
 endif
-LDFLAGS_DYN = $(LDFLAGS) $(BITS_FLAG) -shared $(DYN_FLAGS)
+ifeq ($(DYN_FLAG),yes)
+LDFLAGS    := $(LDFLAGS) -shared $(DYN_FLAGS)
+endif
 
 # Infos
 c_infos: base_infos
@@ -91,6 +94,7 @@ c_infos: base_infos
 	@echo " + CFLAGS ... = '$(CFLAGS)'"
 	@echo " + LDFLAGS .. = '$(LDFLAGS)'"
 	@echo " + DEP_DIR .. = '$(DEP_DIR)'"
+	@echo " + SOURCES .. = '$(SOURCES)'"
 	@echo
 
 # Object target
