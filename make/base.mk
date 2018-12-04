@@ -37,8 +37,8 @@ ECHO_SUCCESS    = $(ECHO) "$$($(DATE_TIMESTAMP)) [SUCCESS] "
 else
 ECHO_INFO       = $(ECHO) "$$($(DATE_TIMESTAMP)) [\e[96mINFO\e[0m] "
 ECHO_WARNING    = $(ECHO) "$$($(DATE_TIMESTAMP)) [\e[93mWARNING\e[0m] "
-ECHO_ERROR      = $(ECHO) "$$($(DATE_TIMESTAMP)) [\e[91mERROR\e[0m] "
-ECHO_SUCCESS    = $(ECHO) "$$($(DATE_TIMESTAMP)) [\e[92mSUCCESS\e[0m] "
+ECHO_ERROR      = $(ECHO) "$$($(DATE_TIMESTAMP)) [\e[91mERROR\e[0m] $@"
+ECHO_SUCCESS    = $(ECHO) "$$($(DATE_TIMESTAMP)) [\e[92mSUCCESS\e[0m] $@"
 endif
 
 ECHO_TARGET     = @$(ECHO_INFO)in \"$(shell $(GET_CURRENT_DIR))\", target \"$@\"
