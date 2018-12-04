@@ -39,6 +39,7 @@ c_bin_infos: c_infos
 	@echo " + BIN_EXT .. = '$(BIN_EXT)'"
 	@echo " + SOURCES .. = '$(SOURCES)'"
 	@echo " + TARGET ... = '$(TARGET)'"
+	@echo " + DEP FILES  = '$(patsubst %,$(DEP_DIR)/%.d,$(SOURCES))'"
 	@echo
 
 # Targets
