@@ -19,7 +19,7 @@ DEP_DIR  := $(DEP_DIRD)
 else
 DEP_DIR  := $(DEP_DIRN)
 endif
-DEP_FLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.Td
+DEP_FLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$<.Td
 
 # Sources
 ifeq ($(SOURCES),)
@@ -103,13 +103,14 @@ $(OBJ_DIR)/%$(C_EXT).o: %.c $(DEP_DIR)/%.d
 	$(ECHO_BUILD)
 	$(MAKE_DIR) $(OBJ_DIR) $(DEP_DIR) \
 	&& $(CC) $(DEP_FLAGS) $(CFLAGS) -o $@ -c $< $(CFLAGS_INC) \
-	&& $(MOVE_FILE) $(DEP_DIR)/$*.Td $(DEP_DIR)/$*.d \
-	&& touch $@
+	&& $(MOVE_FILE) $(DEP_DIR)/$<.Td $(DEP_DIR)/$<.d \
+	&& touch $@; \
+	$(END_TARGET)
 
 $(DEP_DIR)/%.d: ;
 .PRECIOUS: $(DEP_DIR)/%.d
 
-include $(wildcard $(patsubst %,$(DEP_DIR)/%.d,$(SOURCES)))
+include $(patsubst %,$(DEP_DIR)/%.d,$(SOURCES))
 
 clean:
 	$(ECHO_CLEAN)
