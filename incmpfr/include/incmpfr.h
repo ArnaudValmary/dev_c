@@ -1,18 +1,22 @@
+/**
+ * @file
+ * You find here all macros for using simply the MPFR library
+ */
 #ifndef __INCMPFR_H_
 #define __INCMPFR_H_
 
-/**
+/*
  * For MPFR API (mpfr_t type & MPFR functions)
  */
 #include <stdio.h>
 #include <mpfr.h>
 
-/**
- * n = variable name
- * p = precision
- * v = value
- * b = base
- * r = rounding mode
+/** Start a block with a defined variable
+ * @param n variable name
+ * @param p precision
+ * @param v value
+ * @param b base
+ * @param r rounding mode
  */
 #define WITH_MPFR(n, p, v, b, r) \
     do { \
@@ -22,8 +26,8 @@
             mpfr_set_str(n, v, b, r); \
             { \
 
-/**
- * n = variable name (necessary from clearing)
+/** End a block with a defined variable
+ * @param n variable name (necessary from clearing)
  */
 #define END_WIH_MPFR(n) \
             } \
@@ -31,10 +35,11 @@
         mpfr_clear(n); \
     } while(0) \
 
-/**
- * op1 = operand #1
- * op2 = operand #2
- * r = rounding mode
+/** Compute an addition with op1 and op2 and put the result in op1
+ * Intermediate value is made with the same precision as op1
+ * @param op1 operand #1
+ * @param op2 operand #2
+ * @param r rounding mode
  */
 #define MPFR_ADD(op1, op2, r) \
     { \
