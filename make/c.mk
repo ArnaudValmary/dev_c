@@ -58,7 +58,7 @@ CC = gcc
 
 # Compilation flags
 C_BITS_FLAG = -m$(BITS_FLAG)
-C_NORM      = c99
+C_NORM      = gnu99
 CFLAGS      = $(C_BITS_FLAG) -W -Wall -std=$(C_NORM) -pedantic
 ifeq ($(DEBUG_FLAG),yes)
 CFLAGS     := $(CFLAGS) -g

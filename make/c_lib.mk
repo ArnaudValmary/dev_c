@@ -5,7 +5,7 @@ include $(MK_DIR)/c.mk
 
 LIB_PREFIX = lib
 
-CFLAGS_INC = -I../../include $(INCLUDES)
+CFLAGS_INC = -I../../include -I../include_private $(INCLUDES)
 
 TARGETN    = $(LIB_DIR)/$(LIB_PREFIX)$(LIBNAME)$(LIB_EXT)$(LIBVERSION)
 TARGETD    = $(LIB_DIR)/$(LIB_PREFIX)$(LIBNAME)$(C_EXT_DBG)$(LIB_EXT)$(LIBVERSION)
