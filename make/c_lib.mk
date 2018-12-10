@@ -17,8 +17,7 @@ else
 	TARGET = $(TARGETN)
 endif
 
-
-# Infos
+# Targets
 lib_infos: c_infos
 	@echo "C lib:"
 	@echo "- Macros:"
@@ -30,5 +29,4 @@ lib_infos: c_infos
 	@echo " + TARGET ... = '$(TARGET)'"
 	@echo
 
-# Targets
 all: $(TARGET)

@@ -14,7 +14,7 @@ endif
 
 AR = ar ruv
 
-# Infos
+# Targets
 c_lib_static_infos: c_lib_infos
 	@echo "C lib static:"
 	@echo "- Commands:"
@@ -23,7 +23,6 @@ c_lib_static_infos: c_lib_infos
 	@echo " + LIB_EXT .. = '$(LIB_EXT)'"
 	@echo
 
-# Targets
 $(TARGET): $(C_OBJS)
 	$(ECHO_MAKE)
 	$(MAKE_DIR) $(LIB_DIR) \

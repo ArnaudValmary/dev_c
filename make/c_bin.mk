@@ -26,12 +26,12 @@ TARGETN    = $(BIN_DIR)/$(BIN_PREFIX)$(PROGNAME)$(BIN_EXT)
 TARGETD    = $(BIN_DIR)/$(BIN_PREFIX)$(PROGNAME)$(C_EXT_DBG)$(BIN_EXT)
 
 ifeq ($(DEBUG_FLAG),yes)
-	TARGET = $(TARGETD)
+TARGET = $(TARGETD)
 else
-	TARGET = $(TARGETN)
+TARGET = $(TARGETN)
 endif
 
-# Infos
+# Targets
 c_bin_infos: c_infos
 	@echo "C bin:"
 	@echo "- Macros:"
@@ -42,7 +42,6 @@ c_bin_infos: c_infos
 	@echo " + DEP FILES  = '$(patsubst %,$(DEP_DIR)/%.d,$(SOURCES))'"
 	@echo
 
-# Targets
 $(TARGET): $(C_OBJS)
 	$(ECHO_LINK)
 	$(MAKE_DIR) $(BIN_DIR) \

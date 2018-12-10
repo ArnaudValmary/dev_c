@@ -38,14 +38,13 @@ else
 LIBVERSION := .$(LIBVERSION)
 endif
 
-# Infos
+# Targets
 c_lib_dynamic_infos: c_lib_infos
 	@echo "C lib dynamic:"
 	@echo "- Macros:"
 	@echo " + LIB_EXT .. = '$(LIB_EXT)'"
 	@echo
 
-# Targets
 $(TARGET): $(C_OBJS)
 	$(ECHO_MAKE)
 	$(MAKE_DIR) $(LIB_DIR) \

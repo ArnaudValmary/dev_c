@@ -82,7 +82,7 @@ ifeq ($(DYN_FLAG),yes)
 LDFLAGS    := $(LDFLAGS) -shared $(DYN_FLAGS)
 endif
 
-# Infos
+# Targets
 c_infos: base_infos
 	@echo "C:"
 	@echo "- Commands:"
@@ -97,9 +97,6 @@ c_infos: base_infos
 	@echo " + SOURCES .. = '$(SOURCES)'"
 	@echo
 
-# Targets
-
-# Object target
 $(OBJ_DIR)/%$(C_EXT).o: %.c
 $(OBJ_DIR)/%$(C_EXT).o: %.c $(DEP_DIR)/%.d
 	$(ECHO_BUILD)
