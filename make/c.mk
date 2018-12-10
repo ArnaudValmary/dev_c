@@ -61,7 +61,7 @@ C_BITS_FLAG = -m$(BITS_FLAG)
 C_NORM      = gnu99
 CFLAGS      = $(C_BITS_FLAG) -W -Wall -std=$(C_NORM) -pedantic
 ifeq ($(DEBUG_FLAG),yes)
-CFLAGS     := $(CFLAGS) -g
+CFLAGS     := $(CFLAGS) -g -DDEBUG
 endif
 ifeq ($(DYN_FLAG),yes)
 DYN_FLAGS   = -fPIC
@@ -96,6 +96,8 @@ c_infos: base_infos
 	@echo " + DEP_DIR .. = '$(DEP_DIR)'"
 	@echo " + SOURCES .. = '$(SOURCES)'"
 	@echo
+
+# Targets
 
 # Object target
 $(OBJ_DIR)/%$(C_EXT).o: %.c
