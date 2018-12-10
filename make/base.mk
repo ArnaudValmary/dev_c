@@ -10,12 +10,13 @@ HOST_CURRENT       = $(shell uname -n)
 # SCM
 BASE_DIR = $(shell git rev-parse --show-toplevel)
 
-.PHONY: default base_infos clean mrproper force all dbg
+.PHONY: default base_infos clean mrproper force all dbg debug
 
 # Targets
-# Yes, before infos target
-default: all
-dbg:
+default:
+	$(MAKE) MK_DIR=$(MK_DIR) DEBUG_FLAG=no all
+
+dbg debug:
 	$(MAKE) MK_DIR=$(MK_DIR) DEBUG_FLAG=yes all
 
 # Commands
