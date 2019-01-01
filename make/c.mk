@@ -101,7 +101,7 @@ $(OBJ_DIR)/%$(C_EXT).o: %.c
 $(OBJ_DIR)/%$(C_EXT).o: %.c $(DEP_DIR)/%.d
 	$(ECHO_BUILD)
 	$(MAKE_DIR) $(OBJ_DIR) $(DEP_DIR) \
-	&& $(CC) $(DEP_FLAGS) $(CFLAGS) -o $@ -c $< $(CFLAGS_INC) \
+	&& $(CC) $(DEP_FLAGS) $(CFLAGS) $(CFLAGS_OPTS) -o $@ -c $< $(CFLAGS_INC) \
 	&& $(MOVE_FILE) $(DEP_DIR)/$<.Td $(DEP_DIR)/$<.d \
 	&& touch $@; \
 	$(END_TARGET)

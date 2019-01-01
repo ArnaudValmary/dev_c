@@ -6,7 +6,7 @@ include $(MK_DIR)/c.mk
 
 CFLAGS_INC = -I../../include $(INCLUDES)
 
-CFLAGS_LIB_COMMON =  -L$(LIB_DIR)
+CFLAGS_LIB_COMMON = -L$(LIB_DIR)
 ifeq ($(DEBUG_FLAG),yes)
 
 ifeq ($(LIBSD),)
