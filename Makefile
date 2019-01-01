@@ -4,8 +4,13 @@ include $(MK_DIR)/sub.mk
 include $(MK_DIR)/doc.mk
 
 SOURCES =       \
-	libproc \
-	incmpfr \
-	myhome  \
-	liblog  \
-
+	libproc     \
+	incmpfr     \
+	myhome      \
+	liblog      \
+	libstrdyn   \
+	liblist     \
+	libdaemon   \
+	libsrv      \
+	libscreen   \
+	libmythread \

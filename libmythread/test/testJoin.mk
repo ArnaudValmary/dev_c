@@ -7,7 +7,7 @@ BIN_DIR  = ../bin
 
 CFLAGS_OPTS = -D_REENTRANT -DLinux
 INCLUDES =
-LIBS     = -lpthread
-LIBSD    = $(LIBS)
+LIBS     = -lmythread -lpthread
+LIBSD    = -lmythread.dbg $(LIBS)
 
 include $(MK_DIR)/c_bin.mk

@@ -1,6 +1,5 @@
 SOURCES = testHello.c
 
-
 PROGNAME = testHello
 
 BIN_DIR  = ../bin
