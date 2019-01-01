@@ -17,7 +17,8 @@ In these directories, you found C compilable codes.
 Some codes were written during my studies.
 
 * [libproc](libproc): Access to "`/proc`" directory ;
-* [liblog](liblog): Minimalist log library
+* [liblog](liblog): Minimalist log library ;
+* [libmythread](libmythread): Work with threads.
 
 ### Projects
 * [myhome](myhome): Library and test program for read and write on a [My Home](http://www.homesystems-legrandgroup.com/) (Legrand, BTicino...) bus with [Open Web Net](https://www.myopen-legrandgroup.com/) (OWN) language.
