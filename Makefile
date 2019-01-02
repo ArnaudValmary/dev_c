@@ -13,7 +13,7 @@ SOURCES =              \
 	libmybacktrace \
 	libstrdyn      \
 	liblist        \
-	libdaemon      \
+	libmyprocess   \
 	libsrv         \
 	libscreen      \
 	libmythread    \
