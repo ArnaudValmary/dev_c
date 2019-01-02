@@ -5,6 +5,7 @@ include $(MK_DIR)/doc.mk
 
 SOURCES =              \
 	memory         \
+	signal         \
 	libproc        \
 	incmpfr        \
 	myhome         \
