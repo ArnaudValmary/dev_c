@@ -16,9 +16,9 @@ In these directories, you found C compilable codes.
 
 Some codes were written during my studies.
 
-* [libdaemon](libdaemon): fork and daemonize (setsid, fork, dup, umask & chdir) functions
 * [liblog](liblog): Minimalist log library
 * [libmybacktrace](libmybacktrace): Simple example of backtrace & backtrace_symbols functions use case (as-is in man page)
+* [libmyprocess](libmyprocess): fork and daemonize (setsid, fork, dup, umask & chdir) functions and test program
 * [libmythread](libmythread): Work with threads (getid/SYS_gettid with syscall) and simple examples (create, join, mutex...)
 * [libproc](libproc): Access to "`/proc`" directory (static and dynamic compilation and link examples)
 
