@@ -60,6 +60,9 @@ all mrproper clean force:
 			RET_CODE_CMD=$$?; \
 			set +x; \
 			RET_CODE=$$(( RET_CODE + RET_CODE_CMD )); \
+		else \
+			$(ECHO_ERROR)" - file or directory '$${SOURCE}' not found"; \
+			RET_CODE=$$(( RET_CODE + 1 )); \
 		fi; \
 	done; \
 	$(END_TARGET_SUB)
