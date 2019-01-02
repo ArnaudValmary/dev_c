@@ -16,9 +16,16 @@ In these directories, you found C compilable codes.
 
 Some codes were written during my studies.
 
-* [libproc](libproc): Access to "`/proc`" directory ;
-* [liblog](liblog): Minimalist log library ;
-* [libmythread](libmythread): Work with threads.
+* [libdaemon](libdaemon): fork and daemonize (setsid, fork, dup, umask & chdir) functions
+* [liblog](liblog): Minimalist log library
+* [libmybacktrace](libmybacktrace): Simple example of backtrace & backtrace_symbols functions use case (as-is in man page)
+* [libmythread](libmythread): Work with threads (getid/SYS_gettid with syscall) and simple examples (create, join, mutex...)
+* [libproc](libproc): Access to "`/proc`" directory (static and dynamic compilation and link examples)
+
+### Examples
+
+* [memory](memory): Simple for printing size of types (compilation possible in 32 bits and in 64 bits modes)
+* [signal](signal): Test handlers for SIGINT, SIGQUIT and SIGALARM signals
 
 ### Projects
 * [myhome](myhome): Library and test program for read and write on a [My Home](http://www.homesystems-legrandgroup.com/) (Legrand, BTicino...) bus with [Open Web Net](https://www.myopen-legrandgroup.com/) (OWN) language.
