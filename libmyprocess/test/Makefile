@@ -3,6 +3,6 @@ PROGNAME = testProcess
 
 BIN_DIR  = ../bin
 
-LIBS     = -lmyprocess -llog
+LIBS     = -lmyprocess -lmylog
 
 include $(MK_DIR)/c_bin.mk
