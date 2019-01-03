@@ -16,8 +16,8 @@ In these directories, you found C compilable codes.
 
 Some codes were written during my studies.
 
-* [liblog](liblog): Minimalist log library
 * [libmybacktrace](libmybacktrace): Simple example of backtrace & backtrace_symbols functions use case (as-is in man page)
+* [libmylog](libmylog): Minimalist log library
 * [libmyprocess](libmyprocess): fork and daemonize (setsid, fork, dup, umask & chdir) functions and test program
 * [libmysrv](libmysrv): Functions for building a basic TCP server with socket, bind, accept, fork, waitpid... functions
 * [libmythread](libmythread): Work with threads (getid/SYS_gettid with syscall) and simple examples (create, join, mutex...)

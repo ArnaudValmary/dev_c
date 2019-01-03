@@ -11,7 +11,7 @@ SOURCES =              \
 	libproc        \
 	incmpfr        \
 	myhome         \
-	liblog         \
+	libmylog       \
 	libmysrv       \
 	libmybacktrace \
 	libstrdyn      \
