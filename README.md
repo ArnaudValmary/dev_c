@@ -24,6 +24,7 @@ Some codes were written during my studies.
 
 ### Examples
 
+* [dl](dl): Test of dynamic library load and dynamic symbol load with dlopen, dlsym and dlclose functions
 * [memory](memory): Simple for printing size of types (compilation possible in 32 bits and in 64 bits modes)
 * [signal](signal): Test handlers for SIGINT, SIGQUIT and SIGALARM signals
 * [va_args](va_args): Test of variable argument lists (special '...' function parameter) with va_start, va_arg and va_end functions/macros
