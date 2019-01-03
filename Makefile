@@ -12,11 +12,11 @@ SOURCES =              \
 	incmpfr        \
 	myhome         \
 	liblog         \
+	libmysrv       \
 	libmybacktrace \
 	libstrdyn      \
 	liblist        \
 	libmyprocess   \
-	libsrv         \
 	libscreen      \
 	libmythread    \
 
