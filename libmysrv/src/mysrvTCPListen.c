@@ -6,7 +6,7 @@ int mysrvTCPListen(int port, int maxNbClient) {
     struct sockaddr_in sockname;
 
     if ((sock = socket(PF_INET /* IPv4*/, SOCK_STREAM /* TCP */, 0)) < 0) {
-        logError(__FILE__, __LINE__, 0, "Socket opening error. Exit");
+        mylogError(__FILE__, __LINE__, 0, "Socket opening error. Exit");
         exit(100);
     }
 
@@ -17,12 +17,12 @@ int mysrvTCPListen(int port, int maxNbClient) {
     sockname.sin_addr.s_addr = htonl(INADDR_ANY);
 
     if (bind(sock, (struct sockaddr *) &sockname, sizeof(struct sockaddr_in)) < 0) {
-        logError(__FILE__, __LINE__, 0, "Bind error. Exit");
+        mylogError(__FILE__, __LINE__, 0, "Bind error. Exit");
         exit(MYSRV_ERROR_BIND);
     }
 
     if (listen(sock, maxNbClient) < 0) {
-        logError(__FILE__, __LINE__, 0, "Listen error. Exit");
+        mylogError(__FILE__, __LINE__, 0, "Listen error. Exit");
         exit(MYSRV_ERROR_LISTEN);
     }
 

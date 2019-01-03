@@ -16,7 +16,7 @@ int mysrvTCPAccept(int mainSock, int timeout) {
                 return -1;
             }
         } else {
-            logError(__FILE__, __LINE__, 0, "Accept error. Exit");
+            mylogError(__FILE__, __LINE__, 0, "Accept error. Exit");
             exit(MYSRV_ERROR_ACCEPT);
         }
     }

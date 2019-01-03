@@ -11,7 +11,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#include <liblog/liblog.h>
+#include <libmylog/libmylog.h>
 #include <libmysrv/libmysrv.h>
 
 #endif
