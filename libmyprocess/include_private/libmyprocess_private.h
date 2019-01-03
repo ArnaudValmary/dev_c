@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#include <liblog/liblog.h>
+#include <libmylog/libmylog.h>
 #include <libmyprocess/libmyprocess.h>
 
 #define MYPROCESS_DEVICE_NULL "/dev/null"

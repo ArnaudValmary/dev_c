@@ -1,6 +1,6 @@
 
 LIBNAME = myprocess
 
-LIBS     = -llog
+LIBS     = -lmylog
 
 include $(MK_DIR)/c_lib_dynamic.mk

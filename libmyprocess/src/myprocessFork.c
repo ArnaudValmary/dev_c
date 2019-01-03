@@ -4,7 +4,7 @@
 void myprocessFork(void) {
     switch (fork()) {
         case -1 :
-            logError(__FILE__, __LINE__, 0, "Fork error. Exit");
+            mylogError(__FILE__, __LINE__, 0, "Fork error. Exit");
             exit(MYPROCESS_ERR_FORK);
         case 0 :
             break;
