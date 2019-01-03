@@ -26,6 +26,7 @@ Some codes were written during my studies.
 
 * [memory](memory): Simple for printing size of types (compilation possible in 32 bits and in 64 bits modes)
 * [signal](signal): Test handlers for SIGINT, SIGQUIT and SIGALARM signals
+* [va_args](va_args): Test of variable argument lists (special '...' function parameter) with va_start, va_arg and va_end functions/macros
 
 ### Projects
 * [myhome](myhome): Library and test program for read and write on a [My Home](http://www.homesystems-legrandgroup.com/) (Legrand, BTicino...) bus with [Open Web Net](https://www.myopen-legrandgroup.com/) (OWN) language.
