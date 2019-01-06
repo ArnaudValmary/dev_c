@@ -16,9 +16,31 @@
 #define SHM_SIZE       (IDX_DEMAND       + 1)
 #define SHM_TYPE       int
 #define MAX_PER_OBJECT 100
+#define PROJ_ID        1234509876
+#define DIR_TMP        "/var/tmp"
+#define PROJ_FILENAME  "mysemshm_test"
 
 int semID = 0;
 int segID = 0;
+
+char* makeSemPath(void) {
+    static char path[1024];
+
+    memset(path, 0, sizeof(path));
+    strcpy(path, DIR_TMP);
+    strcat(path, "/");
+    strcat(path, PROJ_FILENAME);
+
+    printf("Semaphore associated path = '%s'\n", path);
+
+    return path;
+}
+
+key_t makeSemKey(char* path) {
+    key_t semKey = ftok(path, PROJ_ID);
+    printf("Server: Semaphore key = '%d'\n", semKey);
+    return semKey;
+}
 
 void initializeSemaphore(key_t semKey) {
 
@@ -65,8 +87,10 @@ int main(void) {
     int idxObject = 0;
     int nbDemand = 0;
     int* segAddress = NULL;
-    key_t semKey = 2001;
-    //memset(&semKey, 0, sizeof(semKey));
+    key_t semKey = 0;
+
+    memset(&semKey, 0, sizeof(semKey));
+    semKey = makeSemKey(makeSemPath());
 
     segID = shmget(semKey, sizeof(SHM_TYPE) * (SHM_SIZE), IPC_CREAT | IPC_EXCL | 0600);
     if(segID == -1) {
