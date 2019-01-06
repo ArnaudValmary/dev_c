@@ -1,0 +1,4 @@
+#ifndef _LIBMYSEMSHM_PRIVATE_H_
+#define _LIBMYSEMSHM_PRIVATE_H_
+
+#endif
