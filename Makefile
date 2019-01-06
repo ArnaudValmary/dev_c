@@ -12,6 +12,7 @@ SOURCES =              \
 	incmpfr        \
 	myhome         \
 	libmylog       \
+	libmysemshm    \
 	libmysrv       \
 	libmybacktrace \
 	libstrdyn      \

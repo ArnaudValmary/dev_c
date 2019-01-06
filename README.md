@@ -19,6 +19,7 @@ Some codes were written during my studies.
 * [libmybacktrace](libmybacktrace): Simple example of backtrace & backtrace_symbols functions use case (as-is in man page)
 * [libmylog](libmylog): Minimalist log library
 * [libmyprocess](libmyprocess): fork and daemonize (setsid, fork, dup, umask & chdir) functions and test program
+* [libmysemshm](libmysemshm): Test for semaphores and shared memory segments functions
 * [libmysrv](libmysrv): Functions for building a basic TCP server with socket, bind, accept, fork, waitpid... functions
 * [libmythread](libmythread): Work with threads (getid/SYS_gettid with syscall) and simple examples (create, join, mutex...)
 * [libproc](libproc): Access to "`/proc`" directory (static and dynamic compilation and link examples)
