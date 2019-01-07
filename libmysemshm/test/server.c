@@ -1,39 +1,38 @@
-#include <stdio.h>
-#include <sys/shm.h>
-#include <sys/sem.h>
-#include <sys/types.h>
-#include <sys/ipc.h>
-#include <signal.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
+#include <testsemshm_private.h>
 
-#define IDX_SERVER_PID 0
-#define NB_OBJECT      6
-#define IDX_CLIENT_PID ((NB_OBJECT)      + 1)
-#define IDX_OBJECT     ((IDX_CLIENT_PID) + 1)
-#define IDX_DEMAND     ((IDX_OBJECT)     + 1)
-#define SHM_SIZE       (IDX_DEMAND       + 1)
-#define SHM_TYPE       int
-#define MAX_PER_OBJECT 100
-#define PROJ_ID        1234509876
-#define DIR_TMP        "/var/tmp"
-#define PROJ_FILENAME  "mysemshm_test"
+typedef enum {STOP, RUN, TERM_SIGNAL, CLIENT_SIGNAL} serverState_t;
 
 int semID = 0;
 int segID = 0;
+serverState_t serverState = STOP;
 
 char* makeSemPath(void) {
-    static char path[1024];
+    static char semPath[1024];
 
-    memset(path, 0, sizeof(path));
-    strcpy(path, DIR_TMP);
-    strcat(path, "/");
-    strcat(path, PROJ_FILENAME);
+    memset(semPath, 0, sizeof(semPath));
+    strcpy(semPath, DIR_TMP);
+    strcat(semPath, "/");
+    strcat(semPath, PROJ_FILENAME);
 
-    printf("Semaphore associated path = '%s'\n", path);
+    printf("Server: Semaphore associated path = '%s'\n", semPath);
 
-    return path;
+    FILE* pidFile = fopen(semPath, "w+x");
+    if (pidFile == NULL) {
+        if (errno == EEXIST) {
+            perror("Server: PID file already exists");
+        } else {
+            perror("Server: Cannot open PID file");
+        }
+        return NULL;
+    } else {
+        char strPID[15];
+        snprintf(strPID, sizeof(strPID) - 1, "%d", getpid());
+        fwrite(strPID, strlen(strPID), 1, pidFile);
+        fclose(pidFile);
+        printf("Server: PID (%s) written in PID file (%s)\n", strPID, semPath);
+    }
+
+    return semPath;
 }
 
 key_t makeSemKey(char* path) {
@@ -64,22 +63,29 @@ void initializeSemaphore(key_t semKey) {
     }
 }
 
-void handlerClient(int signal) {
-    printf("\n");
-    printf("Server: Received signal '%d == %s' for client\n", signal, strsignal(signal));
-}
-
-
-void handlerTerminate(int signal) {
-    shmctl(segID, IPC_RMID, NULL);
-    printf("\n");
-    printf("Server: Received signal '%d == %s' for terminate server\n", signal, strsignal(signal));
-    if (semctl(semID, 0, IPC_RMID, 0)==-1) {
+void destructSemaphore(int semID, char* semPath) {
+    if (semctl(semID, 0, IPC_RMID, 0) == -1) {
         perror("Server: Cannot destruct semaphore");
     } else {
         printf("Server: Semaphore (id = %d) destructed\n", semID);
     }
-    exit(EXIT_SUCCESS);
+    if (unlink(semPath) == -1) {
+        perror("Server: Cannot destruct PID file");
+    } else {
+        printf("Server: PID file (%s) destructed\n", semPath);
+    }
+}
+
+void handlerClient(int signal) {
+    printf("\n");
+    printf("Server: Received signal '%d == %s' for client\n", signal, strsignal(signal));
+    serverState = CLIENT_SIGNAL;
+}
+
+void handlerTerminate(int signal) {
+    printf("\n");
+    printf("Server: Received signal '%d == %s' for terminate server\n", signal, strsignal(signal));
+    serverState = TERM_SIGNAL;
 }
 
 int main(void) {
@@ -88,9 +94,10 @@ int main(void) {
     int nbDemand = 0;
     int* segAddress = NULL;
     key_t semKey = 0;
+    char* semPath = makeSemPath();
 
     memset(&semKey, 0, sizeof(semKey));
-    semKey = makeSemKey(makeSemPath());
+    semKey = makeSemKey(semPath);
 
     segID = shmget(semKey, sizeof(SHM_TYPE) * (SHM_SIZE), IPC_CREAT | IPC_EXCL | 0600);
     if(segID == -1) {
@@ -121,10 +128,28 @@ int main(void) {
     printf("Server: Server ready!\n");
 
     while(1) {
+        if (serverState == TERM_SIGNAL) {
+            break;
+        }
+        serverState = RUN;
         printf("Server: Pause (wait for signal)...\n");
         fflush(stdout);
         pause();
         printf("Server: ...return from pause\n");
+        switch (serverState) {
+            case CLIENT_SIGNAL: {
+                serverState = RUN;
+                break;
+            }
+            case TERM_SIGNAL: {
+                destructSemaphore(semID, semPath);
+                return EXIT_SUCCESS;
+            }
+            default: {
+                // WTF ?
+                continue;
+            }
+        }
         clientPID = segAddress[IDX_CLIENT_PID];
         printf("Server : Client PID '%d'\n", clientPID);
         idxObject = segAddress[IDX_OBJECT];
@@ -143,6 +168,8 @@ int main(void) {
         printf("Server : Send signal '%d' to client PID '%d'\n", SIGUSR1, clientPID);
         kill(clientPID, SIGUSR1);
     }
+
+    destructSemaphore(semID, semPath);
 
     return EXIT_SUCCESS;
 }

@@ -4,7 +4,7 @@ PROGNAME = client
 
 BIN_DIR  = ../bin
 
-INCLUDES =
+INCLUDES = -I../include_private
 LIBS     =
 LIBSD    =
 
