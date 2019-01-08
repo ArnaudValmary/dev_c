@@ -1,6 +1,6 @@
-SOURCES = client.c
-
 PROGNAME = client
+
+SOURCES = $(PROGNAME).c
 
 BIN_DIR  = ../bin
 

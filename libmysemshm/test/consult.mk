@@ -1,4 +1,4 @@
-PROGNAME = server
+PROGNAME = consult
 
 SOURCES = $(PROGNAME).c
 

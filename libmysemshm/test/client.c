@@ -9,14 +9,14 @@ char* makeSemPath(void) {
     strcat(path, "/");
     strcat(path, PROJ_FILENAME);
 
-    printf("Semaphore associated path = '%s'\n", path);
+    printf("Client: Semaphore associated path = '%s'\n", path);
 
     return path;
 }
 
 key_t makeSemKey(char* path) {
     key_t semKey = ftok(path, PROJ_ID);
-    printf("Server: Semaphore key = '%d'\n", semKey);
+    printf("Client: Semaphore key = '%d'\n", semKey);
     return semKey;
 }
 
@@ -43,7 +43,6 @@ void V(int sem ) {
 
     semop(sem,&buf,1);
 }
-
 
 int main(int argc, char* argv[]) {
     int segID = 0;
@@ -112,7 +111,7 @@ int main(int argc, char* argv[]) {
     adr_nb = segAddress+9;
 
     serverPID = *adr_serveur;
-    printf("Server PID = %d\n", serverPID);
+    printf("Client: Server PID = %d\n", serverPID);
 
     signal(SIGUSR1,handcont);
 
@@ -126,9 +125,9 @@ int main(int argc, char* argv[]) {
     V(semID);
     printf("\n");
     if (Rep == 1) {
-        printf("Reservation OK\n");
+        printf("Client: Reservation OK\n");
     } else {
-        printf("Reservation impossible, no free space\n");
+        printf("Client: Reservation impossible, no free space\n");
     }
 
     return EXIT_SUCCESS;
