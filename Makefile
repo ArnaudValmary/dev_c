@@ -18,6 +18,6 @@ SOURCES =              \
 	libstrdyn      \
 	liblist        \
 	libmyprocess   \
-	libscreen      \
+	libmyscreen    \
 	libmythread    \
 
