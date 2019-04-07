@@ -15,7 +15,7 @@ SOURCES =              \
 	libmysemshm    \
 	libmysrv       \
 	libmybacktrace \
-	libstrdyn      \
+	libmystrdyn    \
 	liblist        \
 	libmyprocess   \
 	libmyscreen    \

@@ -1,0 +1,60 @@
+0 HEAD
+     1 SOUR Nom du programme
+     1 DEST ANY
+     1 GEDC
+          2 VERS 5.5
+          2 FORM LINEAGE-LINKED
+     1 CHAR UTF-8
+0 @I1@ INDI
+     1 NAME Robert Eugene/Martin/
+     1 SEX M
+     1 BIRT
+          2 DATE 02 OCT 1822
+          2 PLAC Paris, Seine, France
+     1 DEAT
+          2 DATE 14 APR 1905
+          2 PLAC Rouen, Seine-Maritime, France
+          2 SOUR @S1@
+     1 BURI
+          2 PLAC Toulon, Var, France
+          2 SOUR @S2@
+     1 FAMS @F1@
+0 @I2@ INDI
+     1 NAME Marie Anne/Durand/
+     1 SEX F
+     1 BIRT
+         2 DATE BEF 1828
+         2 PLAC Évreux, Eure, France
+         2 NOTE L'âge est estimé avec l'acte de naissance de son fils
+     1 FAMS @F1@
+0 @I3@ INDI
+     1 NAME Joseph/Martin/
+     1 SEX M
+     1 BIRT
+          2 DATE 11 JUN 1861
+          2 PLAC Rouen, Seine-Maritime, France
+          2 SOUR @S1@
+     1 FAMC @F1@
+          2 PEDI birth
+0 @F1@ FAM
+     1 HUSB @I1@
+     1 WIFE @I2@
+     1 CHIL @I3@
+     1 MARR
+          2 DATE DEC 1859
+          2 PLAC Rouen, Seine-Maritime, France
+          2 SOUR @S1@
+     1 NCHI 1
+0 @S1@ SOUR
+     1 TITL Registres d'état civil de Rouen
+     1 REPO @R1@
+0 @S2@ SOUR
+     1 TITL Faire-part de décès
+0 @R1@ REPO
+     1 NAME Archives départementales de la Seine-Maritime
+     1 REFN AD76
+     1 ADDR
+          2 POST 76000
+          2 CITY Rouen
+          2 CTRY France
+0 TRLR

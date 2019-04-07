@@ -1,6 +1,6 @@
 
 # Makefile
-SHELL              = /usr/bin/bash
+SHELL              = /bin/bash
 MK_DIR             = $(BASE_DIR)/make
 
 # OS & Host
