@@ -47,3 +47,10 @@ html
 
 # DOT files
 *.dot
+
+# Image files
+*.svg
+
+# Personal genealogy files
+genealog*_export*
+
